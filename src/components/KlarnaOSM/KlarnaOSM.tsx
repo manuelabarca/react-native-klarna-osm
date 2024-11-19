@@ -15,6 +15,8 @@ interface KlarnaOSMProps extends IAPIKlarna {
     loader?: {};
   };
   debug?: Boolean;
+  badgeWidth?: number;
+  badgeHeight?: number;
 }
 
 const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
@@ -26,7 +28,9 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
   region,
   environment,
   style,
-  debug,
+  debug = false,
+  badgeWidth = 96,
+  badgeHeight = 40,
 }: KlarnaOSMProps) => {
   const [messageData, setMessageData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -167,7 +171,7 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
   return (
     <View style={StyleSheet.compose(styles.container, style?.container)}>
       {badgeNode?.url ? (
-        <SvgUri uri={badgeNode.url} width={96} height={40} />
+        <SvgUri uri={badgeNode.url} width={badgeWidth} height={badgeHeight} />
       ) : (
         <Text>Badge no disponible</Text>
       )}
