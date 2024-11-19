@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Alert, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 import { getApiUrl } from '../../utils';
-import type { IAPIKlarna } from '../../types/api';
+import type { IAPIKlarna } from '../../types';
 import { styles } from './styles';
 import WebViewModal from '../WebviewModal';
 

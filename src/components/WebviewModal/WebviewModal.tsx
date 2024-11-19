@@ -1,16 +1,9 @@
 import { Modal, View, Text, TouchableOpacity } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { styles } from './styles';
+import type { IWebviewModal } from '../../types';
 
-const WebViewModal = ({
-  url,
-  visible,
-  onClose,
-}: {
-  url: string;
-  visible: boolean;
-  onClose: () => void;
-}) => {
+const WebViewModal = ({ url, visible, onClose, closeText }: IWebviewModal) => {
   return (
     <Modal
       visible={visible}
@@ -21,7 +14,7 @@ const WebViewModal = ({
       <View style={styles.container}>
         <View style={styles.header}>
           <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-            <Text style={styles.closeButtonText}>Cerrar</Text>
+            <Text style={styles.closeButtonText}>{closeText}</Text>
           </TouchableOpacity>
         </View>
 

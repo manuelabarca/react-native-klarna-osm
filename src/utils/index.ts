@@ -1,4 +1,4 @@
-import type { IAPIKlarna } from '../types/api';
+import type { IAPIKlarna } from '../types';
 
 export const getApiUrl = ({
   environment,
