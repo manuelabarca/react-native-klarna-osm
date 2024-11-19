@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Alert,
-  Linking,
-  Text,
-  TouchableOpacity,
-  View,
-  StyleSheet,
-} from 'react-native';
+import { Alert, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { SvgUri } from 'react-native-svg';
-import { getApiUrl } from '../../utils/api';
+import { getApiUrl, openURL } from '../../utils';
 import type { IAPIKlarna } from '../../types/api';
 import { styles } from './styles';
 
@@ -144,7 +137,7 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
         {learnMoreNode?.url && (
           <TouchableOpacity
             style={styles.bottomRow}
-            onPress={() => Linking.openURL(learnMoreNode.url)}
+            onPress={() => openURL(learnMoreNode.url)}
           >
             <Text
               style={StyleSheet.compose(styles.learnMore, style?.learnMore)}

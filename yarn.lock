@@ -3196,6 +3196,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swan-io/react-native-browser@npm:0.4.0":
+  version: 0.4.0
+  resolution: "@swan-io/react-native-browser@npm:0.4.0"
+  peerDependencies:
+    react: ">=18.1.0"
+    react-native: ">=0.70.0"
+  checksum: a6957e4f0a561d4c75bfed3a05cb1666cad424f7ca1774852ca50737e16d184e2c8cbf08925aff05e50938d9e2ae26fee661e10a8195695ea2f790cb5eecc2bc
+  languageName: node
+  linkType: hard
+
 "@tootallnate/quickjs-emscripten@npm:^0.23.0":
   version: 0.23.0
   resolution: "@tootallnate/quickjs-emscripten@npm:0.23.0"
@@ -11758,6 +11768,7 @@ __metadata:
     "@evilmartians/lefthook": ^1.5.0
     "@react-native/eslint-config": ^0.73.1
     "@release-it/conventional-changelog": ^9.0.2
+    "@swan-io/react-native-browser": 0.4.0
     "@types/jest": ^29.5.5
     "@types/react": ^18.2.44
     commitlint: ^17.0.2
@@ -11774,6 +11785,7 @@ __metadata:
     release-it: ^17.10.0
     typescript: ^5.2.2
   peerDependencies:
+    "@swan-io/react-native-browser": "*"
     react: "*"
     react-native: "*"
     react-native-svg: ^15.9.0
