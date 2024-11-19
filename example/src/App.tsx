@@ -1,17 +1,18 @@
-import { useState, useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-klarna-osm';
+import { StyleSheet, View } from 'react-native';
+import { KlarnaOSM } from 'react-native-klarna-osm';
 
 export default function App() {
-  const [result, setResult] = useState<number | undefined>();
-
-  useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <KlarnaOSM
+        clientId="90245094-73f7-5e6e-ad8f-714cabc16708"
+        placementKey="credit-promotion-badge"
+        locale="es-ES"
+        purchaseAmount={3000}
+        version="v3"
+        region="EU"
+        environment="playground"
+      />
     </View>
   );
 }

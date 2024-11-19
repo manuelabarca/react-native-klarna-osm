@@ -1,3 +1,5 @@
-export function multiply(a: number, b: number): Promise<number> {
-  return Promise.resolve(a * b);
-}
+// src/index.ts
+export { default as KlarnaOSM } from './components/KlarnaOSM';
+
+export * from './types';
+export * from './utils/api';
