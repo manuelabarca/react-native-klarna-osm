@@ -167,7 +167,7 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
   return (
     <View style={StyleSheet.compose(styles.container, style?.container)}>
       {badgeNode?.url ? (
-        <SvgUri uri={badgeNode.url} width={40} height={40} />
+        <SvgUri uri={badgeNode.url} width={96} height={40} />
       ) : (
         <Text>Badge no disponible</Text>
       )}
@@ -197,7 +197,6 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
         url={webViewUrl || ''}
         visible={isWebViewModalVisible}
         onClose={() => setWebViewModalVisible(false)}
-        closeText="Cerrar"
       />
     </View>
   );
