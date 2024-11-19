@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { SvgUri } from 'react-native-svg';
-import { getApiUrl, openURL } from '../../utils';
+import { getApiUrl } from '../../utils';
 import type { IAPIKlarna } from '../../types/api';
 import { styles } from './styles';
+import WebViewModal from '../WebviewModal';
 
 interface KlarnaOSMProps extends IAPIKlarna {
   style?: {
@@ -30,6 +31,9 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
   const [messageData, setMessageData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [isWebViewModalVisible, setWebViewModalVisible] =
+    useState<boolean>(false);
+  const [webViewUrl, setWebViewUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchMessage = async () => {
@@ -106,6 +110,11 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
     debug,
   ]);
 
+  const handleLearnMoreClick = (url: string) => {
+    setWebViewUrl(url);
+    setWebViewModalVisible(true);
+  };
+
   if (isLoading) {
     if (debug) {
       console.log('Loading...');
@@ -174,7 +183,7 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
         {learnMoreNode?.url && (
           <TouchableOpacity
             style={styles.bottomRow}
-            onPress={() => openURL(learnMoreNode.url)}
+            onPress={() => handleLearnMoreClick(learnMoreNode.url)}
           >
             <Text
               style={StyleSheet.compose(styles.learnMore, style?.learnMore)}
@@ -184,6 +193,11 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
           </TouchableOpacity>
         )}
       </View>
+      <WebViewModal
+        url={webViewUrl || ''}
+        visible={isWebViewModalVisible}
+        onClose={() => setWebViewModalVisible(false)}
+      />
     </View>
   );
 };
