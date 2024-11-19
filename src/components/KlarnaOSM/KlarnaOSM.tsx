@@ -1,11 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Linking, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Alert,
+  Linking,
+  Text,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+} from 'react-native';
 import { SvgUri } from 'react-native-svg';
 import { getApiUrl } from '../../utils/api';
 import type { IAPIKlarna } from '../../types/api';
 import { styles } from './styles';
 
-interface KlarnaOSMProps extends IAPIKlarna {}
+interface KlarnaOSMProps extends IAPIKlarna {
+  style?: {
+    container?: {};
+    badge?: {};
+    message?: {};
+    learnMore?: {};
+    loader?: {};
+  };
+}
 
 const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
   clientId,
@@ -15,6 +30,7 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
   version,
   region,
   environment,
+  style,
 }: KlarnaOSMProps) => {
   const [messageData, setMessageData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -77,7 +93,7 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
 
   if (isLoading) {
     return (
-      <View style={styles.loader}>
+      <View style={StyleSheet.compose(styles.loader, style?.loader)}>
         <Text>Loading...</Text>
       </View>
     );
@@ -110,18 +126,34 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
   );
 
   return (
-    <View style={styles.container}>
+    <View style={StyleSheet.compose(styles.container, style?.container)}>
       {badgeNode?.url ? (
-        <SvgUri uri={badgeNode.url} width={50} height={50} />
+        <SvgUri uri={badgeNode.url} width={40} height={40} />
       ) : (
         <Text>Badge no disponible</Text>
       )}
-      {textNode?.value && <Text style={styles.message}>{textNode.value}</Text>}
-      {learnMoreNode?.url && (
-        <TouchableOpacity onPress={() => Linking.openURL(learnMoreNode.url)}>
-          <Text style={styles.learnMore}>Más información</Text>
-        </TouchableOpacity>
-      )}
+      <View style={styles.contentContainer}>
+        <View style={styles.topRow}>
+          {textNode?.value && (
+            <Text style={StyleSheet.compose(styles.message, style?.message)}>
+              {textNode.value}
+            </Text>
+          )}
+        </View>
+
+        {learnMoreNode?.url && (
+          <TouchableOpacity
+            style={styles.bottomRow}
+            onPress={() => Linking.openURL(learnMoreNode.url)}
+          >
+            <Text
+              style={StyleSheet.compose(styles.learnMore, style?.learnMore)}
+            >
+              Más información
+            </Text>
+          </TouchableOpacity>
+        )}
+      </View>
     </View>
   );
 };
