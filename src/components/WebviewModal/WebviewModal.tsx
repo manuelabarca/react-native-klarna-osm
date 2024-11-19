@@ -14,14 +14,13 @@ const WebViewModal = ({
   return (
     <Modal
       visible={visible}
+      presentationStyle="pageSheet"
       animationType="slide"
-      transparent={true}
       onRequestClose={onClose}
     >
       <View style={styles.container}>
         <View style={styles.webview_container}>
           <WebView source={{ uri: url }} style={styles.webview} />
-          <Button title="Cerrar" onPress={onClose} />
         </View>
       </View>
     </Modal>
