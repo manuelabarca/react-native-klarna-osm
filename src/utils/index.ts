@@ -38,7 +38,8 @@ interface IOpenURL {
 }
 
 export const openURL = (params: IOpenURL) => {
-  openBrowser(params.url, {
+  const url = decodeURIComponent(params.url);
+  openBrowser(url, {
     animationType: 'slide', // "fade" | "slide" (default to "slide")
     dismissButtonStyle: 'close', // "cancel" | "close" | "done" (default to "close")
     barTintColor: params.barTintColor, // in-app browser UI background color
