@@ -13,6 +13,7 @@ interface KlarnaOSMProps extends IAPIKlarna {
     learnMore?: {};
     loader?: {};
   };
+  debug: Boolean;
 }
 
 const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
@@ -24,6 +25,7 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
   region,
   environment,
   style,
+  debug,
 }: KlarnaOSMProps) => {
   const [messageData, setMessageData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -32,6 +34,18 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
   useEffect(() => {
     const fetchMessage = async () => {
       try {
+        if (debug) {
+          console.log('Fetching message with the following parameters:', {
+            clientId,
+            placementKey,
+            locale,
+            purchaseAmount,
+            version,
+            region,
+            environment,
+          });
+        }
+
         const response = await fetch(
           getApiUrl({
             clientId,
@@ -49,6 +63,10 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
           throw new Error(data.message || 'Error loading message.');
         }
 
+        if (debug) {
+          console.log('Received response data:', data);
+        }
+
         setMessageData(data);
 
         if (data.impression_url) {
@@ -57,6 +75,9 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
       } catch (err: any) {
         setError(err.message);
         Alert.alert('Error', 'There was a problem fetching Klarna messages.');
+        if (debug) {
+          console.error('Error fetching data:', err);
+        }
       } finally {
         setIsLoading(false);
       }
@@ -82,9 +103,13 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
     version,
     region,
     environment,
+    debug,
   ]);
 
   if (isLoading) {
+    if (debug) {
+      console.log('Loading...');
+    }
     return (
       <View style={StyleSheet.compose(styles.loader, style?.loader)}>
         <Text>Loading...</Text>
@@ -93,6 +118,9 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
   }
 
   if (error) {
+    if (debug) {
+      console.error('Error occurred:', error);
+    }
     return (
       <View style={styles.container}>
         <Text>Error: {error}</Text>
@@ -101,6 +129,9 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
   }
 
   if (!messageData) {
+    if (debug) {
+      console.log('No message data available.');
+    }
     return (
       <View style={styles.container}>
         <Text>Unable to load message.</Text>
@@ -117,6 +148,12 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
   const learnMoreNode = messageData.content.nodes.find(
     (node: any) => node.name === 'ACTION_LEARN_MORE'
   );
+
+  if (debug) {
+    console.log('Badge Node:', badgeNode);
+    console.log('Text Node:', textNode);
+    console.log('Learn More Node:', learnMoreNode);
+  }
 
   return (
     <View style={StyleSheet.compose(styles.container, style?.container)}>
