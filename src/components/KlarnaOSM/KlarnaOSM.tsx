@@ -142,7 +142,7 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
             <Text
               style={StyleSheet.compose(styles.learnMore, style?.learnMore)}
             >
-              Más información
+              {learnMoreNode.label}
             </Text>
           </TouchableOpacity>
         )}
