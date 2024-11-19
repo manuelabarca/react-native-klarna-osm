@@ -1,4 +1,4 @@
-import { Modal, View, Button } from 'react-native';
+import { Modal, View } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { styles } from './styles';
 
