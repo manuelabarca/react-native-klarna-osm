@@ -197,6 +197,7 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
         url={webViewUrl || ''}
         visible={isWebViewModalVisible}
         onClose={() => setWebViewModalVisible(false)}
+        closeText="Cerrar"
       />
     </View>
   );

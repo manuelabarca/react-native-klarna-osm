@@ -3,7 +3,12 @@ import { WebView } from 'react-native-webview';
 import { styles } from './styles';
 import type { IWebviewModal } from '../../types';
 
-const WebViewModal = ({ url, visible, onClose, closeText }: IWebviewModal) => {
+const WebViewModal = ({
+  url,
+  visible,
+  onClose,
+  closeText = 'Cerrar',
+}: IWebviewModal) => {
   return (
     <Modal
       visible={visible}

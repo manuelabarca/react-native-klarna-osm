@@ -11,7 +11,7 @@ export interface IAPIKlarna {
 export interface IWebviewModal {
   url: string;
   visible: boolean;
-  closeText?: 'Cerrar';
+  closeText?: string;
   onClose: () => void;
 }
 
