@@ -11776,6 +11776,7 @@ __metadata:
   peerDependencies:
     react: "*"
     react-native: "*"
+    react-native-svg: ^15.9.0
   languageName: unknown
   linkType: soft
 
