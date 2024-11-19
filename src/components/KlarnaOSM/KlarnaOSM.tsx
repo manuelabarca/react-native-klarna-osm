@@ -14,7 +14,7 @@ interface KlarnaOSMProps extends IAPIKlarna {
     learnMore?: {};
     loader?: {};
   };
-  debug: Boolean;
+  debug?: Boolean;
 }
 
 const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
