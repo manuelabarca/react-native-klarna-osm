@@ -1,6 +1,6 @@
 {
   "name": "react-native-klarna-osm",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Klarna OSM for react native",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
