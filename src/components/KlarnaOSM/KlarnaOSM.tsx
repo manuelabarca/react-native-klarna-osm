@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 import { getApiUrl } from '../../utils';
 import type { IAPIKlarna } from '../../types';
@@ -53,6 +53,9 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
             environment,
           });
         }
+        if (debug && purchaseAmount <= 0) {
+          console.log('Purchase amount is zero or negative');
+        }
 
         const response = await fetch(
           getApiUrl({
@@ -82,7 +85,6 @@ const KlarnaOSM: React.FC<KlarnaOSMProps> = ({
         }
       } catch (err: any) {
         setError(err.message);
-        Alert.alert('Error', 'There was a problem fetching Klarna messages.');
         if (debug) {
           console.error('Error fetching data:', err);
         }
